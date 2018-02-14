@@ -31,6 +31,8 @@ module ScopedSearch
       case definition.klass.connection.class.name.split('::').last
       when /postgresql/i
         PostgreSQLAdapter
+      when /postgisadapter/i
+        PostGISAdapter
       else
         self
       end
@@ -575,6 +577,12 @@ module ScopedSearch
     end
   end
 
+  # The PostGISAdapter make sure that searches are case sensitive when
+  # using the like/unlike operators, by using the PostrgeSQL-specific
+  # <tt>ILIKE operator</tt> instead of <tt>LIKE</tt>.
+  class PostGISAdapter < PostgreSQLAdapter
+  end
+  
   # Include the modules into the corresponding classes
   # to add SQL generation capabilities to them.
 
