@@ -32,7 +32,7 @@ module ScopedSearch
       when /postgresql/i
         PostgreSQLAdapter
       when /postgisadapter/i
-        PostGISAdapter
+        PostgreSQLAdapter
       else
         self
       end
@@ -575,12 +575,6 @@ module ScopedSearch
         sql
       end
     end
-  end
-
-  # The PostGISAdapter make sure that searches are case sensitive when
-  # using the like/unlike operators, by using the PostrgeSQL-specific
-  # <tt>ILIKE operator</tt> instead of <tt>LIKE</tt>.
-  class PostGISAdapter < PostgreSQLAdapter
   end
   
   # Include the modules into the corresponding classes
